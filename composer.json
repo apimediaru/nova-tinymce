@@ -1,7 +1,9 @@
 {
     "name": "apimediaru/nova-tinymce",
-    "description": "A Laravel Nova field.",
+    "description": "A Laravel Nova field that provides integration of TinyMCE.",
     "keywords": [
+        "apimediaru",
+        "tinymce",
         "laravel",
         "nova"
     ],
