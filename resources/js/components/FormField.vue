@@ -7,10 +7,11 @@
   >
     <template slot="field">
       <editor
-        :id="field.name"
+        :id="id"
         v-model="value"
         :api-key="apiKey"
         :init="editorConfig"
+        initDelay
       />
     </template>
   </default-field>
@@ -18,7 +19,8 @@
 
 <script>
 import { FormField, HandlesValidationErrors } from 'laravel-nova';
-import Editor from '@tinymce/tinymce-vue';
+import Editor from '@apimediaru/nova-tinymce-vue';
+import { getUID } from '../utils';
 
 export default {
   mixins: [FormField, HandlesValidationErrors],
@@ -27,6 +29,10 @@ export default {
 
   components: {
     'editor': Editor,
+  },
+
+  created() {
+    this.id = `tinymce_editor_${getUID()}`;
   },
 
   computed: {
@@ -55,8 +61,6 @@ export default {
     editorConfig() {
       const config = this.editorConfigOptions;
       const height = this.height || config.height || 500;
-      console.log(this.field);
-    console.log(height);
       return {
         ...config,
         language: this.language,
