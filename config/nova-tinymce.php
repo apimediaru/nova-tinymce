@@ -12,7 +12,7 @@ return [
     'editor_config' => 'APIMedia\TinyMCE\Http\Services\EditorConfig::generate',
 
     /**
-     * TinyMCE API Key for your domain
+     * TinyMCE API Key for your domain.
      *
      * You can create your own key here:
      * @link https://www.tiny.cloud/docs/quick-start/
@@ -20,8 +20,9 @@ return [
     'api_key' => 'fwm5m1tmeavfpclh5f3ueq3k77fjf7hmidopuk9romfsvuhv',
 
     /**
-     * TinyMCE language
+     * TinyMCE frontend language.
+     * Can be plain string or string that refers to callable static class method.
      */
-    'locale' => \App::getLocale(),
+    'locale' => 'App::getLocale',
 
 ];

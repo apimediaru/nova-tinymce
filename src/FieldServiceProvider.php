@@ -23,7 +23,7 @@ class FieldServiceProvider extends ServiceProvider
                 'novaTinyMCE' => [
                     'api_key' => config('nova-tinymce.api_key'),
                     'editorConfig' => EditorConfig::get(),
-                    'locale' => config('nova-tinymce.locale', \App::getLocale()),
+                    'locale' => $this->getLocale(),
                 ],
             ]);
         });
@@ -49,5 +49,16 @@ class FieldServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/nova-tinymce.php', 'nova-tinymce'
         );
+    }
+
+    public function getLocale()
+    {
+        $locale = config('nova-tinymce.locale', \App::getLocale());
+
+        if (is_callable($locale)) {
+            $locale = call_user_func($locale);
+        }
+
+        return $locale;
     }
 }
