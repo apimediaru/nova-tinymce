@@ -49,10 +49,6 @@ export default {
     modalOpen: false,
   }),
 
-  created() {
-    console.log(this.field);
-  },
-
   methods: {
     open() {
       this.modalOpen = true;
