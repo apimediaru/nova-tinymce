@@ -25,10 +25,7 @@
         <ModalHeader class="flex items-center">
           {{ field.name }}
         </ModalHeader>
-        <ModalContent
-          class="text-black bg-white"
-          v-html="field.value"
-        />
+        <ModalContent v-html="field.value" />
         <ModalFooter>
           <div class="ml-auto">
             <LoadingButton
