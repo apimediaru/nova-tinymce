@@ -12,6 +12,12 @@ return [
     'editor_config' => 'APIMedia\TinyMCE\Http\Services\EditorConfig::generate',
 
     /**
+     * TinyMCE default height.
+     * Can be number or string with css dimension.
+     */
+    'editor_height' => '500px',
+
+    /**
      * TinyMCE API Key for your domain.
      *
      * You can create your own key here:

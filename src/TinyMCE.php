@@ -11,7 +11,7 @@ class TinyMCE extends Field
      *
      * @var string
      */
-    public $component = 'TinyMCE';
+    public $component = 'tinymce-field';
 
     /**
      * Editor height
@@ -19,7 +19,7 @@ class TinyMCE extends Field
      * @var int|string
      *
      */
-    public $height = 500;
+    public $height = null;
 
     /**
      * Override editor config

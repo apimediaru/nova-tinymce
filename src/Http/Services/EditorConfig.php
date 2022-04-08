@@ -20,7 +20,7 @@ class EditorConfig
             'style_formats_merge' => true,
             'plugins' => [
                 'lists advlist autolink charmap print preview',
-                'link anchor image imagetools emoticons hr paste',
+                'link anchor image emoticons hr paste',
                 'searchreplace visualblocks code fullscreen insertdatetime',
                 'media table paste code help wordcount',
             ],

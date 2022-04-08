@@ -20,9 +20,10 @@ class FieldServiceProvider extends ServiceProvider
             Nova::script('TinyMCE', __DIR__.'/../dist/js/field.js');
             Nova::style('TinyMCE', __DIR__.'/../dist/css/field.css');
             Nova::provideToScript([
-                'novaTinyMCE' => [
+                'NovaTinyMCE' => [
                     'api_key' => config('nova-tinymce.api_key'),
                     'editorConfig' => EditorConfig::get(),
+                    'editorHeight' => config('nova-tinymce.editor_height'),
                     'locale' => $this->getLocale(),
                 ],
             ]);
