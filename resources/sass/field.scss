@@ -1,1 +1,13 @@
-// Nova Tool CSS
+// Dark mode white stripe fix
+.tox {
+  .tox-edit-area__iframe {
+    background-color: transparent !important;
+  }
+}
+
+// Hide stock textarea
+.nova-tinymce-hide-textarea {
+  textarea {
+    display: none;
+  }
+}

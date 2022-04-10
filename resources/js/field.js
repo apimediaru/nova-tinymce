@@ -1,3 +1,5 @@
+import './tinymce';
+
 import IndexField from './components/IndexField';
 import DetailField from './components/DetailField';
 import FormField from './components/FormField';

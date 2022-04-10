@@ -8,7 +8,7 @@
         aria-role="button"
         @click.stop.prevent="open"
       >
-        {{ __('Show Content') }}
+        {{ __('novaTinyMCE.showContent') }}
       </a>
     </span>
     <span v-else>&mdash;</span>
@@ -19,13 +19,19 @@
       @close-via-escape="close"
     >
       <div
-        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-auto"
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden mx-auto nova-tinymce-hide-textarea"
         style="max-width: 1200px;"
       >
         <ModalHeader class="flex items-center">
           {{ field.name }}
         </ModalHeader>
-        <ModalContent v-html="field.value" />
+        <ModalContent>
+          <TinymceEditor
+            v-model="field.value"
+            :init="editorConfig"
+            disabled
+          />
+        </ModalContent>
         <ModalFooter>
           <div class="ml-auto">
             <LoadingButton
@@ -42,17 +48,37 @@
 </template>
 
 <script>
+import hasEditor from '@/mixins/hasEditor';
+
 export default {
+  mixins: [hasEditor],
+
   props: ['resourceName', 'field'],
 
   data: () => ({
     modalOpen: false,
   }),
 
+  computed: {
+    editorConfig() {
+      return {
+        ...this.getEditorBaseOptions(),
+        height: window.innerHeight - 200,
+      };
+    },
+  },
+
   methods: {
+    /**
+     * Show modal.
+     */
     open() {
       this.modalOpen = true;
     },
+
+    /**
+     * Hide modal.
+     */
     close() {
       this.modalOpen = false;
     },

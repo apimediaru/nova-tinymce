@@ -4,7 +4,12 @@ namespace APIMedia\TinyMCE\Http\Services;
 
 class EditorConfig
 {
-    public static function get()
+    /**
+     * Get TinyMCE configuration
+     *
+     * @return array
+     */
+    public static function get(): array
     {
         $config = config('nova-tinymce.editor_config');
         if (is_callable($config)) { return call_user_func($config); }
@@ -12,23 +17,22 @@ class EditorConfig
         return [];
     }
 
-    public static function generate()
+    /**
+     * Generate default TinyMCE configuration
+     *
+     * @return array
+     */
+    public static function generate(): array
     {
         return [
-            'menubar' => true,
-            'branding' => false,
+            'menubar' => 'file edit view insert format tools table help',
             'style_formats_merge' => true,
-            'plugins' => [
-                'lists advlist autolink charmap print preview',
-                'link anchor image emoticons hr paste',
-                'searchreplace visualblocks code fullscreen insertdatetime',
-                'media table paste code help wordcount',
-            ],
             'toolbar' => [
                 'undo redo paste pastetext | searchreplace | formatselect | bold italic backcolor | link anchor image | ' .
                 'alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | ' .
-                'removeformat hr | styleselect | emoticons | help',
+                'removeformat hr | styleselect | emoticons',
             ],
+            'plugins' => 'lists advlist autolink charmap preview link anchor image emoticons searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount',
             'formats' => [
                 'nowrap' => [
                     'inline' => 'span',
@@ -37,10 +41,10 @@ class EditorConfig
             ],
             'style_formats' => [
                 [
-                    'title' => __('nova-tinymce::editor.utilities'),
+                    'title' => __('novaTinyMCE.utilities'),
                     'items' => [
                         [
-                            'title' => __('nova-tinymce::editor.text_nowrap'),
+                            'title' => __('novaTinyMCE.textNowrap'),
                             'format' => 'nowrap',
                         ],
                     ],
@@ -48,15 +52,15 @@ class EditorConfig
             ],
             'image_class_list' => [
                 [
-                    'title' => __('nova-tinymce::editor.none'),
+                    'title' => __('novaTinyMCE.none'),
                     'value' => '',
                 ],
                 [
-                    'title' => __('nova-tinymce::editor.image_responsive'),
+                    'title' => __('novaTinyMCE.imageResponsive'),
                     'value' => 'rte-image-responsive',
                 ],
                 [
-                    'title' => __('nova-tinymce::editor.full_width'),
+                    'title' => __('novaTinyMCE.fullWidth'),
                     'value' => 'rte-full-width',
                 ],
             ],

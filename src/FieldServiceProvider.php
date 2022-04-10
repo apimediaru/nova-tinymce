@@ -21,20 +21,29 @@ class FieldServiceProvider extends ServiceProvider
             Nova::style('TinyMCE', __DIR__.'/../dist/css/field.css');
             Nova::provideToScript([
                 'NovaTinyMCE' => [
-                    'api_key' => config('nova-tinymce.api_key'),
                     'editorConfig' => EditorConfig::get(),
                     'editorHeight' => config('nova-tinymce.editor_height'),
-                    'locale' => $this->getLocale(),
+                    'editorMinHeight' => config('nova-tinymce.editor_min_height'),
+                    'editorSkin' => config('nova-tinymce.editor_skin'),
+                    'locale' => $this->getEditorLocale(),
                 ],
             ]);
         });
 
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'nova-tinymce');
+        // Load translations to nova
+        $this->registerTranslations();
 
+        // Publish public assets
         $this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/nova-tinymce'),
+            __DIR__.'/../public' => public_path('vendor/nova-tinymce'),
+        ], 'nova-tinymce-assets');
+
+        // Publish localizations
+        $this->publishes([
+            __DIR__.'/../resources/lang' => lang_path('vendor/nova-tinymce')
         ], 'nova-tinymce-lang');
 
+        // Publish config
         $this->publishes([
             __DIR__.'/../config/nova-tinymce.php' => config_path('nova-tinymce.php')
         ], 'nova-tinymce-config');
@@ -50,9 +59,18 @@ class FieldServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/nova-tinymce.php', 'nova-tinymce'
         );
+
+        $this->commands([
+            Console\PublishCommand::class,
+        ]);
     }
 
-    public function getLocale()
+    /**
+     * Get locale for TinyMCE
+     *
+     * @return string
+     */
+    public function getEditorLocale()
     {
         $locale = config('nova-tinymce.locale', \App::getLocale());
 
@@ -61,5 +79,22 @@ class FieldServiceProvider extends ServiceProvider
         }
 
         return $locale;
+    }
+
+    /**
+     * Register translations for current locale
+     *
+     * @return void
+     */
+    protected function registerTranslations()
+    {
+        $currentLocale = app()->getLocale();
+
+        Nova::translations(__DIR__.'/../resources/lang/'.$currentLocale.'.json');
+        Nova::translations(lang_path('vendor/nova-tinymce/'.$currentLocale.'.json'));
+
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang/', 'nova-tinymce');
+        $this->loadJsonTranslationsFrom(__DIR__.'/../resources/lang');
+        $this->loadJsonTranslationsFrom(lang_path('vendor/nova-tinymce/'.$currentLocale.'.json'));
     }
 }

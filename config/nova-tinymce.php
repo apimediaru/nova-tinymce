@@ -15,15 +15,22 @@ return [
      * TinyMCE default height.
      * Can be number or string with css dimension.
      */
-    'editor_height' => '500px',
+    'editor_height' => 500,
 
     /**
-     * TinyMCE API Key for your domain.
-     *
-     * You can create your own key here:
-     * @link https://www.tiny.cloud/docs/quick-start/
+     * TinyMCE min height.
+     * Must be an integer.
      */
-    'api_key' => 'fwm5m1tmeavfpclh5f3ueq3k77fjf7hmidopuk9romfsvuhv',
+    'editor_min_height' => 300,
+
+    /**
+     * TinyMCE skin.
+     * Empty value means that skin will be auto-detected between oxide and oxide-dark variants.
+     *
+     * You can find available options here and lock a preferred skin.
+     * @link https://www.tiny.cloud/docs/tinymce/6/customize-ui/#skins
+     */
+    'editor_skin' => null,
 
     /**
      * TinyMCE frontend language.

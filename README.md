@@ -1,13 +1,31 @@
-# TinyMCE integration for Laravel Nova
+# TinyMCE's integration for Laravel Nova
 
-## Install
-```composer require apimediaru/nova-tinymce```
+## Installation
+1. Install the package
+```
+composer require apimediaru/nova-tinymce
+```
+
+2. Publish assets
+```
+php artisan nova-tinymce:publish
+```
+
 
 ## Publishing assets
 ### Config
-```php artisan vendor:publish --tag=nova-tinymce-config```
+```
+php artisan vendor:publish --tag=nova-tinymce-config
+```
 ### Localizations
-```php artisan vendor:publish --tag=nova-tinymce-lang```
+```
+php artisan vendor:publish --tag=nova-tinymce-lang
+```
+### Assets
+***(enables skins, languages and plugins)***
+```
+php artisan vendor:publish --tag=nova-tinymce-assets
+```
 
 ## Usage
 Example of usage in Nova:
