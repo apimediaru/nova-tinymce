@@ -1,10 +1,10 @@
-import Editor from '@tinymce/tinymce-vue';
+import RichTextEditor from '@/components/RichTextEditor';
 
 const EDITOR_FALLBACK_HEIGHT = 500;
 
 export default {
   components: {
-    TinymceEditor: Editor,
+    RichTextEditor,
   },
 
   computed: {

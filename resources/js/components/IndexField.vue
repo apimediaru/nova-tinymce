@@ -26,7 +26,7 @@
           {{ field.name }}
         </ModalHeader>
         <ModalContent>
-          <TinymceEditor
+          <RichTextEditor
             v-model="field.value"
             :init="editorConfig"
             disabled

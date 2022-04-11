@@ -6,7 +6,7 @@
     <template
       #value
     >
-      <TinymceEditor
+      <RichTextEditor
         v-model="field.value"
         :init="editorConfig"
         disabled
