@@ -36,7 +36,7 @@ class FieldServiceProvider extends ServiceProvider
         // Publish public assets
         $this->publishes([
             __DIR__.'/../public' => public_path('vendor/nova-tinymce'),
-        ], 'nova-tinymce-assets');
+        ], ['nova-tinymce-assets', 'laravel-assets']);
 
         // Publish localizations
         $this->publishes([
